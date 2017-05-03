@@ -10,6 +10,12 @@ module.exports = {
     filename: '[name]/bundle.js',
     path: path.resolve(__dirname, 'docs'),
   },
+  resolve: {
+    modules: [
+      path.resolve(__dirname, 'src'),
+      'node_modules'
+    ],
+  },
   module: {
     loaders: [
       {
@@ -18,15 +24,9 @@ module.exports = {
         loader: 'worker-loader',
         options: {
           inline: true,
-          name: 'workers/[hash].js',
+          name: 'workers/worker.[hash].js',
         },
       }
-    ],
-  },
-  resolve: {
-    modules: [
-      path.resolve(__dirname, 'src'),
-      'node_modules'
     ],
   },
   plugins: [
