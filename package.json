@@ -1,0 +1,30 @@
+{
+  "name": "force-bakeoff",
+  "version": "0.0.1",
+  "description": "comparing force-layout implementations",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexburner/force-bakeoff.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "serve": "http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "aburner",
+  "license": "MIT",
+  "dependencies": {
+    "d3-force": "1.0.6",
+    "lodash": "4.17.4",
+    "ngraph.forcelayout": "0.1.2",
+    "ngraph.graph": "0.0.12",
+    "pixi.js": "4.5.1",
+    "tiny-fps": "0.0.1"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "2.28.0",
+    "http-server": "0.10.0",
+    "webpack": "2.4.1"
+  }
+}
