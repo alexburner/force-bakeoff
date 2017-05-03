@@ -57,8 +57,9 @@ const links = _.times(count - 1, (i) => ({
 const points = _.map(nodeData, (node) => new Point(node.id));
 const lines = _.map(linkData, (link) => new Line(link.id));
 
-const drawing = new PIXI.Application(width, height);
-document.body.appendChild(drawing.view);
+const pixi = new PIXI.Application(width, height);
+pixi.renderer.backgroundColor = 0xFFFFFF;
+document.body.appendChild(pixi.view);
 
 const draw = (nodes, links) => {
     for (let i = 0, l = nodes.length; i < l; i++) {
