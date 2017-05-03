@@ -21,7 +21,7 @@
     "ngraph.forcelayout": "0.1.2",
     "ngraph.graph": "0.0.12",
     "pixi.js": "4.5.1",
-    "tiny-fps": "0.0.2"
+    "tiny-fps": "0.0.3"
   },
   "devDependencies": {
     "html-webpack-plugin": "2.28.0",

@@ -33,8 +33,8 @@
         }
         const avg = (prevAvg + fps) / 2;
         el.textContent = (
-            'fps ' + fps.toFixed(7) + '\n' +
-            'avg ' + avg.toFixed(7)
+            'fps ' + fps.toFixed(6) + '\n' +
+            'avg ' + avg.toFixed(6)
         );
         prevTime = time;
         prevAvg = avg;
