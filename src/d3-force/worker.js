@@ -30,7 +30,10 @@ const init = (args) => {
 self.addEventListener('message', (e) => {
     switch (e.data.type) {
         case 'init': {
-            init(e.data.args);
+            init({
+                nodes: e.data.nodes,
+                links: e.data.links,
+            });
             self.postMessage({
                 type: 'init',
             });

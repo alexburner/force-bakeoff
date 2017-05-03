@@ -19567,31 +19567,33 @@ module.exports = function(module) {
 
 
 class Line extends __WEBPACK_IMPORTED_MODULE_2_pixi_js__["Graphics"] {
-    constructor() {
+    constructor(stage) {
         super();
-        this.interactive = true;
-        this.buttonMode = true;
+        stage.addChild(this);
     }
     setPosition(x1, y1, x2, y2, pointB) {
         this.clear();
-        this.lineStyle(1, 0x222222);
+        this.lineStyle(2, 0x000000, 0.5);
         this.moveTo(x1, y1);
         this.lineTo(x2, y2);
+        this.interactive = true;
+        this.buttonMode = true;
     }
 }
 
 class Point extends __WEBPACK_IMPORTED_MODULE_2_pixi_js__["Graphics"] {
-    constructor() {
+    constructor(stage) {
         super();
         this.interactive = true;
         this.buttonMode = true;
         this.beenDrawn = false;
+        stage.addChild(this);
     }
     setPosition(x, y) {
         if (!this.beenDrawn) {
             this.beenDrawn = true;
             this.lineStyle(0);
-            this.beginFill(0x222222);
+            this.beginFill(0x000000, 0.5);
             this.drawCircle(0, 0, 10);
             this.endFill();
         }
@@ -19602,6 +19604,8 @@ class Point extends __WEBPACK_IMPORTED_MODULE_2_pixi_js__["Graphics"] {
 
 const width = window.innerWidth;
 const height = window.innerHeight;
+const halfWidth = width / 2;
+const halfHeight = height / 2;
 const hash = window.location.hash.length ?
     Number(window.location.hash.slice(1)) :
     NaN
@@ -19609,32 +19613,39 @@ const hash = window.location.hash.length ?
 const count = isNaN(hash) ? 2000 : hash;
 const nodes = __WEBPACK_IMPORTED_MODULE_1_lodash__["times"](count, (i) => ({
     index: i,
-    x: Math.random() * width,
-    y: Math.random() * height,
+    x: Math.random() * width - halfWidth,
+    y: Math.random() * height - halfHeight,
 }));
 const links = __WEBPACK_IMPORTED_MODULE_1_lodash__["times"](count - 1, (i) => ({
     source: Math.floor(Math.sqrt(i)),
     target: i + 1,
 }));
 
-const points = __WEBPACK_IMPORTED_MODULE_1_lodash__["map"](nodes, (node) => new Point(node.id));
-const lines = __WEBPACK_IMPORTED_MODULE_1_lodash__["map"](links, (link) => new Line(link.id));
+const pixi = new __WEBPACK_IMPORTED_MODULE_2_pixi_js__["Application"](width, height, {antialias: true});
+pixi.renderer.backgroundColor = 0xFFFFFF;
+document.body.appendChild(pixi.view);
 
-const drawing = new __WEBPACK_IMPORTED_MODULE_2_pixi_js__["Application"](width, height);
-document.body.appendChild(drawing.view);
+const points = __WEBPACK_IMPORTED_MODULE_1_lodash__["map"](nodes, (node) => new Point(pixi.stage));
+const lines = __WEBPACK_IMPORTED_MODULE_1_lodash__["map"](links, (link) => new Line(pixi.stage));
 
 const draw = (nodes, links) => {
     for (let i = 0, l = nodes.length; i < l; i++) {
         const node = nodes[i];
         const point = points[i];
-        point.setPosition(node.x, node.y);
+        point.setPosition(
+            node.x + halfWidth,
+            node.y + halfHeight,
+        );
     }
     for (let i = 0, l = links.length; i < l; i++) {
         const link = links[i];
         const line = lines[i];
-        const node1 = nodes[link.source];
-        const node2 = nodes[link.target];
-        line.setPosition(node1.x, node1.y, node2.x, node2.y);
+        line.setPosition(
+            link.source.x + halfWidth,
+            link.source.y + halfHeight,
+            link.target.x + halfWidth,
+            link.target.y + halfHeight,
+        );
     }
 };
 
