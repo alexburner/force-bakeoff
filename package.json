@@ -9,6 +9,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "clean": "rm -r docs/*",
     "serve": "http-server docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

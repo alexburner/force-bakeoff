@@ -14,20 +14,25 @@ module.exports = {
     loaders: [
       {
         test: /worker\.js$/,
-        loader: "worker-loader?inline=true"
+        exclude: /node_modules/,
+        loader: 'worker-loader',
+        options: {
+          inline: true,
+          name: 'workers/[hash].js',
+        },
       }
     ],
   },
   resolve: {
     modules: [
-      path.resolve(__dirname, "src"),
-      "node_modules"
+      path.resolve(__dirname, 'src'),
+      'node_modules'
     ],
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: "commons",
-      filename: "commons.js",
+      name: 'commons',
+      filename: 'commons.js',
     }),
     new HtmlWebpackPlugin({
       chunks: [],

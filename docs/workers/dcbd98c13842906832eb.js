@@ -17215,21 +17215,20 @@ module.exports = function(module) {
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// file.js
-var _ = __webpack_require__(0)
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
 
-var o = {foo: 'foo'}
-
-_.has(o, 'foo') // true
-
-// Post data to parent thread
-self.postMessage({foo: 'foo'})
-
-// Respond to message from parent thread
-self.addEventListener('message', function(event){
-    console.log(event);
+const o = {foo: 'foo'};
+self.postMessage({
+    bake: 'ngraph',
+    foo: __WEBPACK_IMPORTED_MODULE_0_lodash__["has"](o, 'foo'),
+});
+self.addEventListener('message', e => {
+    console.log('worker heard browser', e);
 });
 
 /***/ })

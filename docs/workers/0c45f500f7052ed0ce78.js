@@ -17223,9 +17223,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
 
 const o = {foo: 'foo'};
-self.postMessage({foo: __WEBPACK_IMPORTED_MODULE_0_lodash__["has"](o, 'foo')});
+self.postMessage({
+    bake: 'd3-force',
+    foo: __WEBPACK_IMPORTED_MODULE_0_lodash__["has"](o, 'foo'),
+});
 self.addEventListener('message', e => {
-    console.log('worker heard browser message', e);
+    console.log('worker heard browser', e);
 });
 
 /***/ })

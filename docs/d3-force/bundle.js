@@ -11,10 +11,10 @@ webpackJsonp([1],{
 
 
 
-const worker = new __WEBPACK_IMPORTED_MODULE_1_d3_force_worker_js__();
+const worker = new __WEBPACK_IMPORTED_MODULE_1_d3_force_worker_js___default.a();
 worker.postMessage({bake: 'd3-force'});
 worker.addEventListener('message', e => {
-    console.log('browser heard worker message', e);
+    console.log('browser heard worker', e);
 });
 
 /***/ }),
