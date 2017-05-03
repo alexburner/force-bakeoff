@@ -1,2 +1,2 @@
-import 'ngraph/worker.js';
-import 'ngraph/browser.js';
+import 'src/ngraph/worker.js';
+import 'src/ngraph/browser.js';

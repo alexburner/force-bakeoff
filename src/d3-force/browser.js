@@ -1,7 +1,7 @@
 import 'tiny-fps';
 import * as _ from 'lodash';
 import * as PIXI from 'pixi.js';
-import ForceWorker from 'd3-force/worker.js';
+import ForceWorker from 'src/d3-force/worker.js';
 
 class Line extends PIXI.Graphics {
     constructor() {
