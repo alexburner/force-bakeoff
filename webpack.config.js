@@ -10,18 +10,29 @@ module.exports = {
     filename: '[name]/bundle.js',
     path: path.resolve(__dirname, 'docs'),
   },
+  resolve: {
+    modules: [
+      path.resolve(__dirname, "src"),
+      "node_modules"
+    ],
+  },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: "commons",
       filename: "commons.js",
     }),
     new HtmlWebpackPlugin({
-      title: 'd3-force demo',
+      chunks: [],
+      filename: 'index.html',
+      template: 'src/index.ejs',
+    }),
+    new HtmlWebpackPlugin({
+      title: 'd3-force bake',
       chunks: ['commons', 'd3-force'],
       filename: 'd3-force/index.html',
     }),
     new HtmlWebpackPlugin({
-      title: 'ngraph demo',
+      title: 'ngraph bake',
       chunks: ['commons', 'ngraph'],
       filename: 'ngraph/index.html',
     }),
