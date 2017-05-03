@@ -54,8 +54,8 @@ const links = _.times(count - 1, (i) => ({
     target: i + 1,
 }));
 
-const points = _.map(nodeData, (node) => new Point(node.id));
-const lines = _.map(linkData, (link) => new Line(link.id));
+const points = _.map(nodes, (node) => new Point(node.id));
+const lines = _.map(links, (link) => new Line(link.id));
 
 const pixi = new PIXI.Application(width, height);
 pixi.renderer.backgroundColor = 0xFFFFFF;

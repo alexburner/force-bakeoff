@@ -30,14 +30,14 @@ const init = (args) => {
 self.addEventListener('message', (e) => {
     switch (e.data.type) {
         case 'init': {
-            // init(e.data.args);
+            init(e.data.args);
             self.postMessage({
                 type: 'init',
             });
             break;
         }
         case 'tick': {
-            // simulation.tick();
+            simulation.tick();
             self.postMessage({
                 type: 'tick',
                 nodes: nodes,

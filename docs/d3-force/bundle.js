@@ -19617,8 +19617,8 @@ const links = __WEBPACK_IMPORTED_MODULE_1_lodash__["times"](count - 1, (i) => ({
     target: i + 1,
 }));
 
-const points = __WEBPACK_IMPORTED_MODULE_1_lodash__["map"](nodeData, (node) => new Point(node.id));
-const lines = __WEBPACK_IMPORTED_MODULE_1_lodash__["map"](linkData, (link) => new Line(link.id));
+const points = __WEBPACK_IMPORTED_MODULE_1_lodash__["map"](nodes, (node) => new Point(node.id));
+const lines = __WEBPACK_IMPORTED_MODULE_1_lodash__["map"](links, (link) => new Line(link.id));
 
 const drawing = new __WEBPACK_IMPORTED_MODULE_2_pixi_js__["Application"](width, height);
 document.body.appendChild(drawing.view);
