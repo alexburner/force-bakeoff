@@ -1,6 +1,6 @@
 # force bakeoff
 
-comparing force-layout implementations
+Comparing force-layout implementations
 
 ## install
 Installs npm dependencies
