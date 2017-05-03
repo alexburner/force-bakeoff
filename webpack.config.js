@@ -10,6 +10,14 @@ module.exports = {
     filename: '[name]/bundle.js',
     path: path.resolve(__dirname, 'docs'),
   },
+  module: {
+    loaders: [
+      {
+        test: /worker\.js$/,
+        loader: "worker-loader?inline=true"
+      }
+    ],
+  },
   resolve: {
     modules: [
       path.resolve(__dirname, "src"),
