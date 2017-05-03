@@ -20,8 +20,8 @@ Starts up `http-server` in `docs`
 npm run serve
 ```
 
-## build
-Runs webpack on `src` and produces `docs`
+## clean
+Removes `docs` directory
 ```
-npm run build
+npm run clean
 ```
