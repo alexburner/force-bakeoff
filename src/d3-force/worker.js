@@ -1,6 +1,7 @@
 import * as d3_force from 'd3-force';
 
-let TICK_LIMIT = 1000000;
+let TICK_LIMIT = 1000;
+let TICK_BATCH = 10;
 
 let charge;
 let link;
@@ -36,13 +37,15 @@ self.addEventListener('message', (e) => {
                 nodes: e.data.nodes,
                 links: e.data.links,
             });
-            for (let i = 0; i < TICK_LIMIT; i++) {
+            for (let i = 0; i < e.data.nodes.length; i++) {
                 simulation.tick();
-                self.postMessage({
-                    type: 'tick',
-                    nodes: nodes,
-                    links: links,
-                });
+                if (i % TICK_BATCH === 0) {
+                    self.postMessage({
+                        type: 'tick',
+                        nodes: nodes,
+                        links: links,
+                    });
+                }
             }
             break;
         }

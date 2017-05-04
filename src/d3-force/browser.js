@@ -1,4 +1,4 @@
-import 'tiny-fps';
+// import 'tiny-fps';
 import * as _ from 'lodash';
 import * as PIXI from 'pixi.js';
 import ForceWorker from 'src/d3-force/worker.js';
@@ -94,7 +94,6 @@ worker.addEventListener('message', (e) => {
     switch (e.data.type) {
         case 'tick': {
             window.requestAnimationFrame(() => {
-                worker.postMessage({type: 'tick'});
                 draw(e.data.nodes, e.data.links);
             });
             break;
