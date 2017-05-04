@@ -10,7 +10,7 @@ class Line extends PIXI.Graphics {
         this.interactive = true;
         this.buttonMode = true;
     }
-    setPosition(x1, y1, x2, y2, pointB) {
+    setPosition(x1, y1, x2, y2) {
         this.clear();
         this.lineStyle(2, 0xFFFFFF);
         this.moveTo(x1, y1);
