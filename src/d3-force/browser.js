@@ -12,7 +12,7 @@ class Line extends PIXI.Graphics {
     }
     setPosition(x1, y1, x2, y2, pointB) {
         this.clear();
-        this.lineStyle(2, 0x000000, 0.5);
+        this.lineStyle(2, 0xFFFFFF);
         this.moveTo(x1, y1);
         this.lineTo(x2, y2);
         // note, we need to define hitArea rectangle
@@ -32,7 +32,7 @@ class Point extends PIXI.Graphics {
         if (!this.beenDrawn) {
             this.beenDrawn = true;
             this.lineStyle(0);
-            this.beginFill(0x000000, 0.5);
+            this.beginFill(0x000000);
             this.drawCircle(0, 0, 10);
             this.endFill();
         }
@@ -61,7 +61,7 @@ const links = _.times(count - 1, (i) => ({
 }));
 
 const pixi = new PIXI.Application(width, height, {antialias: true});
-pixi.renderer.backgroundColor = 0xFFFFFF;
+pixi.renderer.backgroundColor = 0x1b86ff;
 document.body.appendChild(pixi.view);
 
 const points = _.map(nodes, (node) => new Point(pixi.stage));
