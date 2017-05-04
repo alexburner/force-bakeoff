@@ -7,14 +7,16 @@ class Line extends PIXI.Graphics {
     constructor(stage) {
         super();
         stage.addChild(this);
+        this.interactive = true;
+        this.buttonMode = true;
     }
     setPosition(x1, y1, x2, y2, pointB) {
         this.clear();
         this.lineStyle(2, 0x000000, 0.5);
         this.moveTo(x1, y1);
         this.lineTo(x2, y2);
-        this.interactive = true;
-        this.buttonMode = true;
+        // note, we need to define hitArea rectangle
+        // https://github.com/pixijs/pixi.js/issues/821
     }
 }
 
