@@ -19570,14 +19570,16 @@ class Line extends __WEBPACK_IMPORTED_MODULE_2_pixi_js__["Graphics"] {
     constructor(stage) {
         super();
         stage.addChild(this);
-    }
-    setPosition(x1, y1, x2, y2, pointB) {
-        this.clear();
-        this.lineStyle(2, 0x000000, 0.5);
-        this.moveTo(x1, y1);
-        this.lineTo(x2, y2);
         this.interactive = true;
         this.buttonMode = true;
+    }
+    setPosition(x1, y1, x2, y2) {
+        this.clear();
+        this.lineStyle(2, 0xFFFFFF, 0.8);
+        this.moveTo(x1, y1);
+        this.lineTo(x2, y2);
+        // note, we need to define hitArea rectangle
+        // https://github.com/pixijs/pixi.js/issues/821
     }
 }
 
@@ -19593,8 +19595,8 @@ class Point extends __WEBPACK_IMPORTED_MODULE_2_pixi_js__["Graphics"] {
         if (!this.beenDrawn) {
             this.beenDrawn = true;
             this.lineStyle(0);
-            this.beginFill(0x000000, 0.5);
-            this.drawCircle(0, 0, 10);
+            this.beginFill(0x000000, 0.8);
+            this.drawCircle(0, 0, 6);
             this.endFill();
         }
         this.x = x;
@@ -19622,11 +19624,11 @@ const links = __WEBPACK_IMPORTED_MODULE_1_lodash__["times"](count - 1, (i) => ({
 }));
 
 const pixi = new __WEBPACK_IMPORTED_MODULE_2_pixi_js__["Application"](width, height, {antialias: true});
-pixi.renderer.backgroundColor = 0xFFFFFF;
+pixi.renderer.backgroundColor = 0x1b86ff;
 document.body.appendChild(pixi.view);
 
-const points = __WEBPACK_IMPORTED_MODULE_1_lodash__["map"](nodes, (node) => new Point(pixi.stage));
 const lines = __WEBPACK_IMPORTED_MODULE_1_lodash__["map"](links, (link) => new Line(pixi.stage));
+const points = __WEBPACK_IMPORTED_MODULE_1_lodash__["map"](nodes, (node) => new Point(pixi.stage));
 
 const draw = (nodes, links) => {
     for (let i = 0, l = nodes.length; i < l; i++) {

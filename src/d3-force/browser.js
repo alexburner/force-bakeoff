@@ -12,7 +12,7 @@ class Line extends PIXI.Graphics {
     }
     setPosition(x1, y1, x2, y2) {
         this.clear();
-        this.lineStyle(2, 0xFFFFFF);
+        this.lineStyle(2, 0xFFFFFF, 0.8);
         this.moveTo(x1, y1);
         this.lineTo(x2, y2);
         // note, we need to define hitArea rectangle
@@ -32,8 +32,8 @@ class Point extends PIXI.Graphics {
         if (!this.beenDrawn) {
             this.beenDrawn = true;
             this.lineStyle(0);
-            this.beginFill(0x000000);
-            this.drawCircle(0, 0, 10);
+            this.beginFill(0x000000, 0.8);
+            this.drawCircle(0, 0, 6);
             this.endFill();
         }
         this.x = x;
@@ -64,8 +64,8 @@ const pixi = new PIXI.Application(width, height, {antialias: true});
 pixi.renderer.backgroundColor = 0x1b86ff;
 document.body.appendChild(pixi.view);
 
-const points = _.map(nodes, (node) => new Point(pixi.stage));
 const lines = _.map(links, (link) => new Line(pixi.stage));
+const points = _.map(nodes, (node) => new Point(pixi.stage));
 
 const draw = (nodes, links) => {
     for (let i = 0, l = nodes.length; i < l; i++) {
