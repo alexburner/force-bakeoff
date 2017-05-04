@@ -19606,9 +19606,9 @@ const width = window.innerWidth;
 const height = window.innerHeight;
 const halfWidth = width / 2;
 const halfHeight = height / 2;
-const hash = window.location.hash.length ?
-    Number(window.location.hash.slice(1)) :
-    NaN
+const hash = window.location.hash.length
+    ? Number(window.location.hash.slice(1))
+    : NaN
 ;
 const count = isNaN(hash) ? 2000 : hash;
 const nodes = __WEBPACK_IMPORTED_MODULE_1_lodash__["times"](count, (i) => ({
@@ -19634,7 +19634,7 @@ const draw = (nodes, links) => {
         const point = points[i];
         point.setPosition(
             node.x + halfWidth,
-            node.y + halfHeight,
+            node.y + halfHeight
         );
     }
     for (let i = 0, l = links.length; i < l; i++) {
@@ -19644,7 +19644,7 @@ const draw = (nodes, links) => {
             link.source.x + halfWidth,
             link.source.y + halfHeight,
             link.target.x + halfWidth,
-            link.target.y + halfHeight,
+            link.target.y + halfHeight
         );
     }
 };
