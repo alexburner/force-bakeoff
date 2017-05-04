@@ -92,10 +92,6 @@ const worker = new ForceWorker();
 
 worker.addEventListener('message', (e) => {
     switch (e.data.type) {
-        case 'init': {
-            worker.postMessage({type: 'tick'});
-            break;
-        }
         case 'tick': {
             window.requestAnimationFrame(() => {
                 worker.postMessage({type: 'tick'});
