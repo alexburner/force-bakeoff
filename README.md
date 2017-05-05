@@ -14,6 +14,12 @@ Runs webpack on `src` and produces `docs`
 npm run build
 ```
 
+## watch
+Runs webpack if any file changes
+```
+npm run watch
+```
+
 ## serve
 Starts up `http-server` in `docs`
 ```

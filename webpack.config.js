@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
+  devtool: 'cheap-module-source-map',
   entry: {
     'd3-force': './src/d3-force/index.js',
     ngraph: './src/ngraph/index.js',
