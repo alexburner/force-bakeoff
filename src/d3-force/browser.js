@@ -65,6 +65,7 @@ const links = _.times(count - 1, (i) => ({
 
 const pixi = new PIXI.Application(width, height, {antialias: true});
 pixi.renderer.backgroundColor = 0x1b86ff;
+pixi.view.style.display = 'block';
 document.body.appendChild(pixi.view);
 document.body.style.margin = 0;
 document.body.style.padding = 0;

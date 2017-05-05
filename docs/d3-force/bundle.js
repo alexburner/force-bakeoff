@@ -100,6 +100,7 @@ const links = __WEBPACK_IMPORTED_MODULE_0_lodash__["times"](count - 1, (i) => ({
 
 const pixi = new __WEBPACK_IMPORTED_MODULE_1_pixi_js__["Application"](width, height, {antialias: true});
 pixi.renderer.backgroundColor = 0x1b86ff;
+pixi.view.style.display = 'block';
 document.body.appendChild(pixi.view);
 document.body.style.margin = 0;
 document.body.style.padding = 0;

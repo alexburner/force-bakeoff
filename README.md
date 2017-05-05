@@ -2,6 +2,8 @@
 
 Comparing force-layout implementations
 
+But I think I'm doing ngraph wrong, because mine can't do [this](http://jsbin.com/bolipejupu/edit?html,output)
+
 ## install
 Installs npm dependencies
 ```

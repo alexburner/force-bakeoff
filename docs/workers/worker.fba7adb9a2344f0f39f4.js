@@ -2399,10 +2399,10 @@ self.addEventListener('message', (e) => {
                     const nodes = getNodes();
                     const links = getLinks();
                     self.postMessage({
-                        type: 'step',
+                        type: 'tick',
                         nodes: nodes,
                         links: links,
-                        step: i,
+                        tick: i,
                         time: delta,
                     });
                 }
@@ -2414,4 +2414,4 @@ self.addEventListener('message', (e) => {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=worker.f98b7a567ad901469535.js.map
+//# sourceMappingURL=worker.fba7adb9a2344f0f39f4.js.map
