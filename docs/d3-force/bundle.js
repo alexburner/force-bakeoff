@@ -19571,7 +19571,7 @@ class Line extends __WEBPACK_IMPORTED_MODULE_1_pixi_js__["Graphics"] {
     }
     setPosition(x1, y1, x2, y2) {
         this.clear();
-        this.lineStyle(2, 0xFFFFFF, 0.8);
+        this.lineStyle(1, 0xFFFFFF, 0.8);
         this.moveTo(x1, y1);
         this.lineTo(x2, y2);
         // note, we need to define hitArea rectangle
@@ -19592,7 +19592,7 @@ class Point extends __WEBPACK_IMPORTED_MODULE_1_pixi_js__["Graphics"] {
             this.beenDrawn = true;
             this.lineStyle(0);
             this.beginFill(0x000000, 0.8);
-            this.drawCircle(0, 0, 6);
+            this.drawCircle(0, 0, 2);
             this.endFill();
         }
         this.x = x;
@@ -19600,6 +19600,7 @@ class Point extends __WEBPACK_IMPORTED_MODULE_1_pixi_js__["Graphics"] {
     }
 }
 
+const scale = 1/3;
 const width = window.innerWidth;
 const height = window.innerHeight;
 const halfWidth = width / 2;
@@ -19622,6 +19623,8 @@ const links = __WEBPACK_IMPORTED_MODULE_0_lodash__["times"](count - 1, (i) => ({
 const pixi = new __WEBPACK_IMPORTED_MODULE_1_pixi_js__["Application"](width, height, {antialias: true});
 pixi.renderer.backgroundColor = 0x1b86ff;
 document.body.appendChild(pixi.view);
+document.body.style.margin = 0;
+document.body.style.padding = 0;
 
 const lines = __WEBPACK_IMPORTED_MODULE_0_lodash__["map"](links, (link) => new Line(pixi.stage));
 const points = __WEBPACK_IMPORTED_MODULE_0_lodash__["map"](nodes, (node) => new Point(pixi.stage));
@@ -19631,25 +19634,34 @@ const draw = (nodes, links) => {
         const node = nodes[i];
         const point = points[i];
         point.setPosition(
-            node.x + halfWidth,
-            node.y + halfHeight
+            scale * node.x + halfWidth,
+            scale * node.y + halfHeight
         );
     }
     for (let i = 0, l = links.length; i < l; i++) {
         const link = links[i];
         const line = lines[i];
         line.setPosition(
-            link.source.x + halfWidth,
-            link.source.y + halfHeight,
-            link.target.x + halfWidth,
-            link.target.y + halfHeight
+            scale * link.source.x + halfWidth,
+            scale * link.source.y + halfHeight,
+            scale * link.target.x + halfWidth,
+            scale * link.target.y + halfHeight
         );
     }
 };
 
-var stats = new __WEBPACK_IMPORTED_MODULE_1_pixi_js__["Text"]('');
-stats.x = 10;
-stats.y = 10;
+const statText = new __WEBPACK_IMPORTED_MODULE_1_pixi_js__["Text"]('', {
+    fontSize: 12,
+});
+{
+    statText.x = 20;
+    statText.y = 15;
+    const statRect = new __WEBPACK_IMPORTED_MODULE_1_pixi_js__["Graphics"]();
+    statRect.beginFill(0xFFFFFF);
+    statRect.drawRect(10, 10, 90, 40);
+    pixi.stage.addChild(statRect);
+    pixi.stage.addChild(statText);
+}
 
 const worker = new __WEBPACK_IMPORTED_MODULE_2_src_d3_force_worker_js___default.a();
 
@@ -19658,9 +19670,9 @@ worker.addEventListener('message', (e) => {
         case 'tick': {
             window.requestAnimationFrame(() => {
                 draw(e.data.nodes, e.data.links);
-                stats.text = (
-                    `tick: ${e.data.tick}\n` +
-                    `secs: ${e.data.time / 1000}`
+                statText.text = (
+                    `ticks = ${e.data.tick}\n` +
+                    `time = ${(e.data.time / 1000).toFixed(2)}s`
                 );
             });
             break;

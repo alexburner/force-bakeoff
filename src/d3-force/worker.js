@@ -32,9 +32,9 @@ self.addEventListener('message', (e) => {
             });
             // run simulation
             const batch = 10;
-            const limit = e.data.nodes.length;
+            const limit = 500;
             const start = Date.now();
-            for (let i = 0; i < limit; i++) {
+            for (let i = 0; i <= limit; i++) {
                 simulation.tick();
                 if (i % batch === 0) {
                     const delta = Date.now() - start;
