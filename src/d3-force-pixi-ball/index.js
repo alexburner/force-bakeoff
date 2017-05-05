@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as PIXI from 'pixi.js';
-import ForceWorker from 'src/workers/ngraph.worker.js';
+import ForceWorker from 'src/workers/d3-force.worker.js';
 
 class Line extends PIXI.Graphics {
     constructor(id, stage) {
@@ -54,13 +54,13 @@ const hash = window.location.hash.length
 ;
 const count = isNaN(hash) ? 2000 : hash;
 const nodes = _.times(count, (i) => ({
-    id: i,
+    index: i,
     x: Math.random() * width - halfWidth,
     y: Math.random() * height - halfHeight,
 }));
 const links = _.times(count - 1, (i) => ({
-    fromId: Math.floor(Math.sqrt(i)),
-    toId: i + 1,
+    source: Math.floor(Math.random() * count),
+    target: Math.floor(Math.random() * count),
 }));
 
 const pixi = new PIXI.Application(width, height, {antialias: true});
@@ -86,10 +86,10 @@ const draw = (nodes, links) => {
         const link = links[i];
         const line = lines[i];
         line.setPosition(
-            scale * link.from.x + halfWidth,
-            scale * link.from.y + halfHeight,
-            scale * link.to.x + halfWidth,
-            scale * link.to.y + halfHeight
+            scale * link.source.x + halfWidth,
+            scale * link.source.y + halfHeight,
+            scale * link.target.x + halfWidth,
+            scale * link.target.y + halfHeight
         );
     }
 };
@@ -111,11 +111,11 @@ const worker = new ForceWorker();
 
 worker.addEventListener('message', (e) => {
     switch (e.data.type) {
-        case 'step': {
+        case 'tick': {
             window.requestAnimationFrame(() => {
                 draw(e.data.nodes, e.data.links);
                 statText.text = (
-                    `steps = ${e.data.step}\n` +
+                    `ticks = ${e.data.tick}\n` +
                     `time = ${(e.data.time / 1000).toFixed(2)}s`
                 );
             });
