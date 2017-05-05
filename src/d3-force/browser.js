@@ -1,4 +1,3 @@
-// import 'tiny-fps';
 import * as _ from 'lodash';
 import * as PIXI from 'pixi.js';
 import ForceWorker from 'src/d3-force/worker.js';
@@ -88,6 +87,10 @@ const draw = (nodes, links) => {
     }
 };
 
+var stats = new PIXI.Text('');
+stats.x = 10;
+stats.y = 10;
+
 const worker = new ForceWorker();
 
 worker.addEventListener('message', (e) => {
@@ -95,6 +98,10 @@ worker.addEventListener('message', (e) => {
         case 'tick': {
             window.requestAnimationFrame(() => {
                 draw(e.data.nodes, e.data.links);
+                stats.text = (
+                    `tick: ${e.data.tick}\n` +
+                    `secs: ${e.data.time / 1000}`
+                );
             });
             break;
         }

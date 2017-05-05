@@ -19558,7 +19558,6 @@ module.exports = function(module) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_pixi_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_pixi_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_src_d3_force_worker_js__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_src_d3_force_worker_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_src_d3_force_worker_js__);
-// import 'tiny-fps';
 
 
 
@@ -19648,6 +19647,10 @@ const draw = (nodes, links) => {
     }
 };
 
+var stats = new __WEBPACK_IMPORTED_MODULE_1_pixi_js__["Text"]('');
+stats.x = 10;
+stats.y = 10;
+
 const worker = new __WEBPACK_IMPORTED_MODULE_2_src_d3_force_worker_js___default.a();
 
 worker.addEventListener('message', (e) => {
@@ -19655,6 +19658,10 @@ worker.addEventListener('message', (e) => {
         case 'tick': {
             window.requestAnimationFrame(() => {
                 draw(e.data.nodes, e.data.links);
+                stats.text = (
+                    `tick: ${e.data.tick}\n` +
+                    `secs: ${e.data.time / 1000}`
+                );
             });
             break;
         }
