@@ -64,10 +64,10 @@ self.addEventListener('message', (e) => {
                     const nodes = getNodes();
                     const links = getLinks();
                     self.postMessage({
-                        type: 'tick',
+                        type: 'step',
                         nodes: nodes,
                         links: links,
-                        tick: i,
+                        step: i,
                         time: delta,
                     });
                 }
