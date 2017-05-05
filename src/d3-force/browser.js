@@ -3,11 +3,12 @@ import * as PIXI from 'pixi.js';
 import ForceWorker from 'src/d3-force/worker.js';
 
 class Line extends PIXI.Graphics {
-    constructor(stage) {
+    constructor(id, stage) {
         super();
-        stage.addChild(this);
+        this.id = id;
         this.interactive = true;
         this.buttonMode = true;
+        stage.addChild(this);
     }
     setPosition(x1, y1, x2, y2) {
         this.clear();
@@ -20,11 +21,13 @@ class Line extends PIXI.Graphics {
 }
 
 class Point extends PIXI.Graphics {
-    constructor(stage) {
+    constructor(id, stage) {
         super();
+        this.id = id;
         this.interactive = true;
         this.buttonMode = true;
         this.beenDrawn = false;
+        this.on('pointerdown', () => alert(`Node ${this.id} clicked`));
         stage.addChild(this);
     }
     setPosition(x, y) {
@@ -66,8 +69,8 @@ document.body.appendChild(pixi.view);
 document.body.style.margin = 0;
 document.body.style.padding = 0;
 
-const lines = _.map(links, (link) => new Line(pixi.stage));
-const points = _.map(nodes, (node) => new Point(pixi.stage));
+const lines = _.map(links, (link, i) => new Line(i, pixi.stage));
+const points = _.map(nodes, (node, i) => new Point(i, pixi.stage));
 
 const draw = (nodes, links) => {
     for (let i = 0, l = nodes.length; i < l; i++) {

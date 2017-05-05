@@ -19563,11 +19563,12 @@ module.exports = function(module) {
 
 
 class Line extends __WEBPACK_IMPORTED_MODULE_1_pixi_js__["Graphics"] {
-    constructor(stage) {
+    constructor(id, stage) {
         super();
-        stage.addChild(this);
+        this.id = id;
         this.interactive = true;
         this.buttonMode = true;
+        stage.addChild(this);
     }
     setPosition(x1, y1, x2, y2) {
         this.clear();
@@ -19580,11 +19581,13 @@ class Line extends __WEBPACK_IMPORTED_MODULE_1_pixi_js__["Graphics"] {
 }
 
 class Point extends __WEBPACK_IMPORTED_MODULE_1_pixi_js__["Graphics"] {
-    constructor(stage) {
+    constructor(id, stage) {
         super();
+        this.id = id;
         this.interactive = true;
         this.buttonMode = true;
         this.beenDrawn = false;
+        this.on('pointerdown', () => alert(`Node ${this.id} clicked`));
         stage.addChild(this);
     }
     setPosition(x, y) {
@@ -19626,8 +19629,8 @@ document.body.appendChild(pixi.view);
 document.body.style.margin = 0;
 document.body.style.padding = 0;
 
-const lines = __WEBPACK_IMPORTED_MODULE_0_lodash__["map"](links, (link) => new Line(pixi.stage));
-const points = __WEBPACK_IMPORTED_MODULE_0_lodash__["map"](nodes, (node) => new Point(pixi.stage));
+const lines = __WEBPACK_IMPORTED_MODULE_0_lodash__["map"](links, (link, i) => new Line(i, pixi.stage));
+const points = __WEBPACK_IMPORTED_MODULE_0_lodash__["map"](nodes, (node, i) => new Point(i, pixi.stage));
 
 const draw = (nodes, links) => {
     for (let i = 0, l = nodes.length; i < l; i++) {
