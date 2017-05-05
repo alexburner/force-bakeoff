@@ -2,7 +2,7 @@
 
 Comparing force-layout implementations
 
-But I think I'm doing ngraph wrong, because mine can't do [this](http://jsbin.com/visasow/edit?html,output)
+*(but I think I'm doing ngraph wrong, because mine can't do [this](http://jsbin.com/visasow/edit?html,output))*
 
 ## install
 Installs npm dependencies
