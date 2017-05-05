@@ -2390,7 +2390,7 @@ self.addEventListener('message', (e) => {
             });
             // run simulation
             const batch = 10;
-            const limit = e.data.nodes.length;
+            const limit = e.data.limit || e.data.nodes.length;
             const start = Date.now();
             for (let i = 0; i <= limit; i++) {
                 layout.step();
@@ -2414,4 +2414,4 @@ self.addEventListener('message', (e) => {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=worker.f98b7a567ad901469535.js.map
+//# sourceMappingURL=worker.20a82fecf59b9a5fc638.js.map

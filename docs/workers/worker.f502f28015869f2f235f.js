@@ -1922,7 +1922,7 @@ self.addEventListener('message', (e) => {
             });
             // run simulation
             const batch = 10;
-            const limit = e.data.nodes.length;
+            const limit = e.data.limit || e.data.nodes.length;
             const start = Date.now();
             for (let i = 0; i <= limit; i++) {
                 simulation.tick();
@@ -1944,4 +1944,4 @@ self.addEventListener('message', (e) => {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=worker.3a80dc9e14ebfb2391e7.js.map
+//# sourceMappingURL=worker.f502f28015869f2f235f.js.map

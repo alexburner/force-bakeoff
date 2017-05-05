@@ -128,4 +128,5 @@ worker.postMessage({
     type: 'init',
     nodes: nodes,
     links: links,
+    limit: 500,
 });

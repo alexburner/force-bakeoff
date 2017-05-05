@@ -32,7 +32,7 @@ self.addEventListener('message', (e) => {
             });
             // run simulation
             const batch = 10;
-            const limit = e.data.nodes.length;
+            const limit = e.data.limit || e.data.nodes.length;
             const start = Date.now();
             for (let i = 0; i <= limit; i++) {
                 simulation.tick();
