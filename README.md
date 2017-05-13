@@ -2,6 +2,9 @@
 
 Comparing force-layout implementations
 
+Served here: https://alexburner.github.io/force-bakeoff/
+
+
 ## install
 Installs npm dependencies
 ```
